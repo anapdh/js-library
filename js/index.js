@@ -20,9 +20,12 @@ function showBooks(library) {
     cell.innerHTML = text;
     parent.appendChild(cell);
   }
-  let bookDOM = document.createElement("tr");
-  createCell(bookDOM, "My title");
-  createCell(bookDOM, "My author");
-  createCell(bookDOM, "1996");
-  bookShelf.appendChild(bookDOM);
+  library.forEach(book => {
+    let bookDOM = document.createElement("tr");
+    createCell(bookDOM, book.title);
+    createCell(bookDOM, book.author);
+    createCell(bookDOM, book.year);
+    createCell(bookDOM, book.read);
+    bookShelf.appendChild(bookDOM);
+  });
 }
