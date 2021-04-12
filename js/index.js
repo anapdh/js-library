@@ -7,6 +7,6 @@ function Book(name, author, year) {
   this.read = false;
 }
 
-function addBookToLibrary() {
-  // do stuff here
+function addBookToLibrary(book) {
+  myLibrary.push(book);
 }
