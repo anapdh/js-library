@@ -29,18 +29,27 @@ function showBooks(library) {
     createCell(bookDOM, book.author);
     createCell(bookDOM, book.year);
     createCell(bookDOM, book.pages);
-    createCell(bookDOM, book.read);
+    createCell(bookDOM, book.read ? "yes" : "no");
+    createCell(bookDOM, '<a class="toggle-read" href="#">O</a>');
     createCell(bookDOM, '<a class="delete" href="#">X</a>');
     bookShelfContent.appendChild(bookDOM);
   });
 }
 
 function deleteBooks(el) {
-  if(el.classList.contains('delete')) {
+  if (el.classList.contains('delete')) {
     let currentRow = el.parentElement.parentElement;
     let currentIndex = Number(currentRow.dataset.index);
     myLibrary.splice(currentIndex, 1);
-    showBooks(myLibrary);
+  }
+}
+
+function toggleRead(el) {
+  if (el.classList.contains('toggle-read')) {
+    let currentRow = el.parentElement.parentElement;
+    let currentIndex = Number(currentRow.dataset.index);
+    let book = myLibrary[currentIndex];
+    book.read ^= true; // XOR
   }
 }
 
@@ -49,7 +58,6 @@ function addBookHandler(event) {
   const author = inputAuthor.value;
   const year = inputYear.value;
   const pages = inputPages.value;
-  //const read = inputRead.checked;
 
   const book = new Book(title, author, year, pages);
 
@@ -63,5 +71,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   bookShelfContent.addEventListener('click', (e) => {
     deleteBooks(e.target);
-    });
+    toggleRead(e.target);
+    showBooks(myLibrary);
+  });
 });
