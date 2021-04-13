@@ -35,6 +35,15 @@ function showBooks(library) {
   });
 }
 
+function deleteBooks(el) {
+  if(el.classList.contains('delete')) {
+    let currentRow = el.parentElement.parentElement;
+    let currentIndex = Number(currentRow.dataset.index);
+    myLibrary.slice(currentIndex, 1);
+    showBooks(myLibrary);
+  }
+}
+
 function addBookHandler(event) {
   const title = inputTitle.value;
   const author = inputAuthor.value;
@@ -51,4 +60,8 @@ function addBookHandler(event) {
 document.addEventListener("DOMContentLoaded", (event) => {
   showBooks(myLibrary);
   inputButton.addEventListener("click", addBookHandler);
+
+  bookShelfContent.addEventListener('click', (e) => {
+    deleteBooks(e.target);
+    });
 });
