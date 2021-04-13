@@ -1,12 +1,13 @@
 let myLibrary = [
-  new Book("Hello world", "The world", 1970),
-  new Book("Goobye world", "The world", 2038)
+  new Book("Hello world", "The world", 1970, 1000),
+  new Book("Goobye world", "The world", 2038, 2000)
 ];
 
-function Book(title, author, year) {
+function Book(title, author, year, pages) {
   this.title = title;
   this.author = author;
   this.year = year;
+  this.pages = pages;
   this.read = false;
 }
 
@@ -26,6 +27,7 @@ function showBooks(library) {
     createCell(bookDOM, book.title);
     createCell(bookDOM, book.author);
     createCell(bookDOM, book.year);
+    createCell(bookDOM, book.pages);
     createCell(bookDOM, book.read);
     bookShelfContent.appendChild(bookDOM);
   });
@@ -38,9 +40,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
     const title = inputTitle.value;
     const author = inputAuthor.value;
     const year = inputYear.value;
-    //const read = inputRead.value;
+    const pages = inputPages.value;
+    //const read = inputRead.checked;
 
-    const book = new Book(title, author, year);
+    const book = new Book(title, author, year, pages);
 
     addBookToLibrary(book);
     showBooks(myLibrary);
