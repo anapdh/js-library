@@ -29,3 +29,19 @@ function showBooks(library) {
     bookShelf.appendChild(bookDOM);
   });
 }
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  showBooks(myLibrary);
+
+  inputButton.addEventListener("click", (event) => {
+    const title = inputTitle.value;
+    const author = inputAuthor.value;
+    const year = inputYear.value;
+    //const read = inputRead.value;
+  
+    const book = new Book(title, author, year);
+  
+    addBookToLibrary(book);
+    showBooks(myLibrary);
+  });
+});
