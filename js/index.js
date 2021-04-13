@@ -22,30 +22,33 @@ function showBooks(library) {
     parent.appendChild(cell);
   }
   bookShelfContent.innerHTML = '';
-  library.forEach(book => {
+  library.forEach((book, index) => {
     let bookDOM = document.createElement("tr");
+    bookDOM.dataset.index = index;
     createCell(bookDOM, book.title);
     createCell(bookDOM, book.author);
     createCell(bookDOM, book.year);
     createCell(bookDOM, book.pages);
     createCell(bookDOM, book.read);
+    createCell(bookDOM, '<a class="delete" href="#">X</a>');
     bookShelfContent.appendChild(bookDOM);
   });
 }
 
+function addBookHandler(event) {
+  const title = inputTitle.value;
+  const author = inputAuthor.value;
+  const year = inputYear.value;
+  const pages = inputPages.value;
+  //const read = inputRead.checked;
+
+  const book = new Book(title, author, year, pages);
+
+  addBookToLibrary(book);
+  showBooks(myLibrary);
+}
+
 document.addEventListener("DOMContentLoaded", (event) => {
   showBooks(myLibrary);
-
-  inputButton.addEventListener("click", (event) => {
-    const title = inputTitle.value;
-    const author = inputAuthor.value;
-    const year = inputYear.value;
-    const pages = inputPages.value;
-    //const read = inputRead.checked;
-
-    const book = new Book(title, author, year, pages);
-
-    addBookToLibrary(book);
-    showBooks(myLibrary);
-  });
+  inputButton.addEventListener("click", addBookHandler);
 });
