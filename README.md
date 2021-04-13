@@ -4,10 +4,10 @@
 
 > This project represents a library using JavaScript.
 
- - You cand add a book.
+ - You can add a book.
  - It will display your added books.
  - It has a button to remove a book.
- - It has a button to change the read status.
+ - It has a button to change the read status of the book.
 
 ## Built With
 
