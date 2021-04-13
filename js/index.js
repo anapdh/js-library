@@ -39,7 +39,7 @@ function deleteBooks(el) {
   if(el.classList.contains('delete')) {
     let currentRow = el.parentElement.parentElement;
     let currentIndex = Number(currentRow.dataset.index);
-    myLibrary.slice(currentIndex, 1);
+    myLibrary.splice(currentIndex, 1);
     showBooks(myLibrary);
   }
 }
