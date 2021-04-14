@@ -15,6 +15,15 @@ function addBookToLibrary(book) {
   myLibrary.push(book);
 }
 
+function showForm() {
+  const f = document.getElementById('bookForm');
+  if ((f.style.display || 'none') === 'none') {
+    f.style.display = 'block';
+  } else {
+    f.style.display = 'none';
+  }
+}
+
 function showBooks(library) {
   function createCell(parent, text) {
     const cell = document.createElement('td');
@@ -68,6 +77,7 @@ function addBookHandler() {
 document.addEventListener('DOMContentLoaded', () => {
   showBooks(myLibrary);
   document.querySelector('#inputButton').addEventListener('click', addBookHandler);
+  document.getElementById('showInputsBtn').addEventListener('click', showForm);
 
   document.querySelector('#bookShelfContent').addEventListener('click', (e) => {
     deleteBooks(e.target);

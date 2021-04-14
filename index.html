@@ -13,7 +13,10 @@
 <body>
   <h1>Library</h1>
   <div class="container">
-    <form action="" id="bookForm">
+    
+    <button type="submit" value="submit" id="showInputsBtn">ADD BOOK</button>
+
+    <form action="" id="bookForm" style="display:none;">
       <label for="title">Title</label>
       <input type="text" name="title" id="inputTitle"><br>
       <label for="author">Author</label>
@@ -22,8 +25,9 @@
       <input type="text" name="year" id="inputYear"><br>
       <label for="pages">Pages</label>
       <input type="number" name="pages" id="inputPages"><br>
-      <input type="button" value="Add book" id="inputButton">
+      <input type="button" value="Submit" id="inputButton">
     </form>
+
     <table id="bookShelf">
       <tr>
         <th>Title</th>
