@@ -62,21 +62,36 @@ function toggleRead(el) {
   }
 }
 
+function showAlert(message) {
+  const div = document.createElement('div');
+  div.appendChild(document.createTextNode(message));
+  const container = document.querySelector('.container');
+  const form = document.querySelector('#bookForm');
+  container.insertBefore(div, form);
+  setTimeout(() => div.remove(), 3000);
+}
+
 function addBookHandler() {
   const title = document.querySelector('#inputTitle').value;
   const author = document.querySelector('#inputAuthor').value;
   const year = document.querySelector('#inputYear').value;
   const pages = document.querySelector('#inputPages').value;
 
-  const book = new Book(title, author, year, pages);
+  if (title && author && year && pages) {
+    const book = new Book(title, author, year, pages);
 
-  addBookToLibrary(book);
-  showBooks(myLibrary);
+    addBookToLibrary(book);
+    showBooks(myLibrary);
+  } else {
+    showAlert('Please fill all the fields');
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   showBooks(myLibrary);
-  document.querySelector('#inputButton').addEventListener('click', addBookHandler);
+  document
+    .querySelector('#inputButton')
+    .addEventListener('click', addBookHandler);
   document.getElementById('showInputsBtn').addEventListener('click', showForm);
 
   document.querySelector('#bookShelfContent').addEventListener('click', (e) => {
