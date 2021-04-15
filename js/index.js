@@ -1,14 +1,10 @@
-function Book(title, author, year, pages) {
-  this.title = title;
-  this.author = author;
-  this.year = year;
-  this.pages = pages;
-  this.read = false;
-}
+const book = (title, author, year, pages, read) => {
+  return { title, author, year, pages, read };
+};
 
 const myLibrary = [
-  new Book('Hello world', 'The world', 1970, 1000),
-  new Book('Goobye world', 'The world', 2038, 2000),
+  book('Hello world', 'The world', 1970, 1000),
+  book('Goobye world', 'The world', 2038, 2000),
 ];
 
 function addBookToLibrary(book) {
@@ -78,7 +74,7 @@ function addBookHandler() {
   const pages = document.querySelector('#inputPages').value;
 
   if (title && author && year && pages) {
-    const book = new Book(title, author, year, pages);
+    book(title, author, year, pages);
 
     addBookToLibrary(book);
     showBooks(myLibrary);
